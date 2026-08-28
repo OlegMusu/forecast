@@ -937,14 +937,14 @@ Error generating stack: `+e.message+`
     font-size: 16px;
     font-weight: 500;
   }
-`,da=`17359e3946544e06bf0a76d07975bc88`,fa=`https://newsapi.org/v2/everything`,pa=async(e,t=1)=>{let n=await fetch(`${fa}?apiKey=${da}&q=${encodeURIComponent(e)}&page=${t}&pageSize=10`);if(!n.ok)throw Error(`Ошибка API: ${n.status}`);return n.json()},ma={query:`forecast`,news:[],loading:!1,page:1};function ha(e,t){switch(t.type){case`SET_NEWS`:return{...e,news:t.payload};case`SET_LOADING`:return{...e,loading:t.payload};case`NEXT_PAGE`:return{...e,page:e.page+1};default:return e}}function ga(){let[e,t]=(0,v.useReducer)(ha,ma);return(0,v.useEffect)(()=>{async function n(){try{t({type:`SET_LOADING`,payload:!0});let n=(await pa(e.query,e.page)).articles.slice(0,4);t({type:`SET_NEWS`,payload:e.page===1?n:[...e.news,...n]})}catch(e){console.log(e)}finally{t({type:`SET_LOADING`,payload:!1})}}n()},[e.query,e.page]),(0,G.jsx)(G.Fragment,{children:(0,G.jsx)(`section`,{children:(0,G.jsxs)(`div`,{className:`container`,children:[(0,G.jsx)(ca,{children:`News forecast`}),(0,G.jsx)(ua,{children:e.news.map(e=>(0,G.jsxs)(`div`,{children:[(0,G.jsx)(`img`,{src:e.urlToImage||`/forecast/assets/no-pictures--eZbyHnr.png`}),(0,G.jsx)(`p`,{children:e.description})]},e.url))}),e.news.length>0&&!e.loading&&(0,G.jsx)(la,{onClick:()=>{t({type:`NEXT_PAGE`})},children:`See more`})]})})})}var _a=W.section`
+`,da=[{url:`https://www.nationalgeographic.com/`,urlToImage:`https://images.unsplash.com/photo-1558788353-f76d92427f16`,description:`Pets can have a positive influence on our everyday lives and emotional wellbeing.`},{url:`https://www.bbc.com/`,urlToImage:`https://images.unsplash.com/photo-1517849845537-4d257902454a`,description:`Spending time with animals can help people feel happier and less stressed.`},{url:`https://www.nature.com/`,urlToImage:`https://images.unsplash.com/photo-1543466835-00a7907e9de1`,description:`Interacting with pets can create strong emotional connections between people and animals.`},{url:`https://www.sciencedaily.com/`,urlToImage:`https://images.unsplash.com/photo-1587300003388-59208cc962cb`,description:`Researchers continue to study the relationship between humans and their pets.`},{url:`https://www.petmd.com/`,urlToImage:`https://images.unsplash.com/photo-1548199973-03cce0bbc87b`,description:`Regular interaction with pets can become an important part of a healthy lifestyle.`},{url:`https://www.akc.org/`,urlToImage:`https://images.unsplash.com/photo-1552053831-71594a27632d`,description:`Playing and communicating with animals helps strengthen the bond between pets and their owners.`},{url:`https://www.aspca.org/`,urlToImage:`https://images.unsplash.com/photo-1560743641-3914f2c45636`,description:`Responsible pet ownership includes spending time with animals and understanding their needs.`},{url:`https://www.purina.com/`,urlToImage:`https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba`,description:`Cats and dogs can become important companions and members of the family.`}],fa=async(e,t=1)=>{let n=(t-1)*4,r=n+4;return{articles:da.slice(n,r),totalResults:da.length}},pa={query:`forecast`,news:[],loading:!1,page:1};function ma(e,t){switch(t.type){case`SET_NEWS`:return{...e,news:t.payload};case`SET_LOADING`:return{...e,loading:t.payload};case`NEXT_PAGE`:return{...e,page:e.page+1};default:return e}}function ha(){let[e,t]=(0,v.useReducer)(ma,pa);return(0,v.useEffect)(()=>{async function n(){try{t({type:`SET_LOADING`,payload:!0});let n=(await fa(e.query,e.page)).articles.slice(0,4);t({type:`SET_NEWS`,payload:e.page===1?n:[...e.news,...n]})}catch(e){console.log(e)}finally{t({type:`SET_LOADING`,payload:!1})}}n()},[e.query,e.page]),(0,G.jsx)(G.Fragment,{children:(0,G.jsx)(`section`,{children:(0,G.jsxs)(`div`,{className:`container`,children:[(0,G.jsx)(ca,{children:`News forecast`}),(0,G.jsx)(ua,{children:e.news.map(e=>(0,G.jsxs)(`div`,{children:[(0,G.jsx)(`img`,{src:e.urlToImage||`/forecast/assets/no-pictures--eZbyHnr.png`}),(0,G.jsx)(`p`,{children:e.description})]},e.url))}),e.news.length>0&&!e.loading&&(0,G.jsx)(la,{onClick:()=>{t({type:`NEXT_PAGE`})},children:`See more`})]})})})}var ga=W.section`
   padding-top: 40px;
   overflow: hidden;
   margin-bottom: 48px;
-`,va=W.h3`
+`,_a=W.h3`
   font-size: 20px;
   margin: 0 0 40px;
-`,ya=W.div`
+`,va=W.div`
   margin: 0 auto;
   height: 210px;
   display: flex;
@@ -955,7 +955,7 @@ Error generating stack: `+e.message+`
   &:active {
     cursor: grabbing;
   }
-`,ba=W.div`
+`,ya=W.div`
   position: absolute;
   overflow: hidden;
   cursor: pointer;
@@ -998,35 +998,35 @@ Error generating stack: `+e.message+`
   &:hover {
     filter: brightness(1);
   }
-`,xa=W.img`
+`,ba=W.img`
   width: 384px;
   height: 211px;
   display: block;
   object-fit: cover;
-`;function Sa(){let[e,t]=(0,v.useState)([]),[n,r]=(0,v.useState)(0);(0,v.useEffect)(()=>{(async()=>{try{let e=await Sr(`nature`,1);t(e.hits)}catch(e){console.error(`Ошибка загрузки изображений:`,e)}})()},[]);let i=t=>{if(!e.length)return null;let r=t-n;return r>e.length/2&&(r-=e.length),r<-e.length/2&&(r+=e.length),r};return(0,G.jsx)(_a,{children:(0,G.jsxs)(`div`,{className:`container`,children:[(0,G.jsx)(va,{children:`Beautiful nature`}),(0,G.jsx)(ya,{children:e.map((e,t)=>{let n=i(t);return n<-2||n>2?null:(0,G.jsx)(ba,{$position:n,onClick:()=>r(t),children:(0,G.jsx)(xa,{src:e.largeImageURL,alt:e.tags})},e.id)})})]})})}var Ca=`/forecast/assets/facebook-C2vNpnz4.svg`,wa=`/forecast/assets/instagram-yzQ5sAPb.svg`,Ta=`/forecast/assets/whatsapp-CvACpcmq.svg`,Ea=W.footer`
+`;function xa(){let[e,t]=(0,v.useState)([]),[n,r]=(0,v.useState)(0);(0,v.useEffect)(()=>{(async()=>{try{let e=await Sr(`nature`,1);t(e.hits)}catch(e){console.error(`Ошибка загрузки изображений:`,e)}})()},[]);let i=t=>{if(!e.length)return null;let r=t-n;return r>e.length/2&&(r-=e.length),r<-e.length/2&&(r+=e.length),r};return(0,G.jsx)(ga,{children:(0,G.jsxs)(`div`,{className:`container`,children:[(0,G.jsx)(_a,{children:`Beautiful nature`}),(0,G.jsx)(va,{children:e.map((e,t)=>{let n=i(t);return n<-2||n>2?null:(0,G.jsx)(ya,{$position:n,onClick:()=>r(t),children:(0,G.jsx)(ba,{src:e.largeImageURL,alt:e.tags})},e.id)})})]})})}var Sa=`/forecast/assets/facebook-C2vNpnz4.svg`,Ca=`/forecast/assets/instagram-yzQ5sAPb.svg`,wa=`/forecast/assets/whatsapp-CvACpcmq.svg`,Ta=W.footer`
   background-color: #ffb36c;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 179px;
-`,Da=W.div`
+`,Ea=W.div`
   width: 1160px;
   display: flex;
   gap: 111px;
   align-items: center;
   justify-content: left;
   box-sizing: border-box;
-`,Oa=W.p`
+`,Da=W.p`
   font-weight: 500;
   font-size: 16px;
   margin-bottom: 10px;
-`,ka=W.span`
+`,Oa=W.span`
   font-weight: 500;
   font-size: 12px;
-`,Aa=W.ul`
+`,ka=W.ul`
   display: flex;
   gap: 20px;
-`,ja=W.li`
+`,Aa=W.li`
   width: 40px;
   height: 40px;
   transition: transform 0.2s ease; 
@@ -1044,4 +1044,4 @@ Error generating stack: `+e.message+`
   &:active {
     transform: scale(1);
   }
-`;function Ma(){return(0,G.jsx)(G.Fragment,{children:(0,G.jsx)(Ea,{children:(0,G.jsxs)(Da,{className:`container`,children:[(0,G.jsx)(`a`,{href:`#`,children:(0,G.jsx)(`img`,{src:nr,alt:`logo`})}),(0,G.jsxs)(`div`,{children:[(0,G.jsx)(Oa,{children:`Address`}),(0,G.jsxs)(`ul`,{children:[(0,G.jsx)(`li`,{children:(0,G.jsx)(ka,{children:`Svobody str. 35`})}),(0,G.jsx)(`li`,{children:(0,G.jsx)(ka,{children:`Kyiv`})}),(0,G.jsx)(`li`,{children:(0,G.jsx)(ka,{children:`Ukraine`})})]})]}),(0,G.jsxs)(`div`,{children:[(0,G.jsx)(Oa,{children:`Contact us`}),(0,G.jsxs)(Aa,{children:[(0,G.jsx)(ja,{children:(0,G.jsx)(`a`,{href:``,children:(0,G.jsx)(`img`,{src:wa,alt:``})})}),(0,G.jsx)(ja,{children:(0,G.jsx)(`a`,{href:``,children:(0,G.jsx)(`img`,{src:Ca,alt:``})})}),(0,G.jsx)(ja,{children:(0,G.jsx)(`a`,{href:``,children:(0,G.jsx)(`img`,{src:Ta,alt:``})})})]})]})]})})})}function Na(){return(0,G.jsxs)(G.Fragment,{children:[(0,G.jsx)(ur,{}),(0,G.jsx)(oa,{}),(0,G.jsx)(sa,{}),(0,G.jsx)(ga,{}),(0,G.jsx)(Sa,{}),(0,G.jsx)(Ma,{})]})}(0,y.createRoot)(document.getElementById(`root`)).render((0,G.jsx)(v.StrictMode,{children:(0,G.jsx)(Na,{})}));
+`;function ja(){return(0,G.jsx)(G.Fragment,{children:(0,G.jsx)(Ta,{children:(0,G.jsxs)(Ea,{className:`container`,children:[(0,G.jsx)(`a`,{href:`#`,children:(0,G.jsx)(`img`,{src:nr,alt:`logo`})}),(0,G.jsxs)(`div`,{children:[(0,G.jsx)(Da,{children:`Address`}),(0,G.jsxs)(`ul`,{children:[(0,G.jsx)(`li`,{children:(0,G.jsx)(Oa,{children:`Svobody str. 35`})}),(0,G.jsx)(`li`,{children:(0,G.jsx)(Oa,{children:`Kyiv`})}),(0,G.jsx)(`li`,{children:(0,G.jsx)(Oa,{children:`Ukraine`})})]})]}),(0,G.jsxs)(`div`,{children:[(0,G.jsx)(Da,{children:`Contact us`}),(0,G.jsxs)(ka,{children:[(0,G.jsx)(Aa,{children:(0,G.jsx)(`a`,{href:``,children:(0,G.jsx)(`img`,{src:Ca,alt:``})})}),(0,G.jsx)(Aa,{children:(0,G.jsx)(`a`,{href:``,children:(0,G.jsx)(`img`,{src:Sa,alt:``})})}),(0,G.jsx)(Aa,{children:(0,G.jsx)(`a`,{href:``,children:(0,G.jsx)(`img`,{src:wa,alt:``})})})]})]})]})})})}function Ma(){return(0,G.jsxs)(G.Fragment,{children:[(0,G.jsx)(ur,{}),(0,G.jsx)(oa,{}),(0,G.jsx)(sa,{}),(0,G.jsx)(ha,{}),(0,G.jsx)(xa,{}),(0,G.jsx)(ja,{})]})}(0,y.createRoot)(document.getElementById(`root`)).render((0,G.jsx)(v.StrictMode,{children:(0,G.jsx)(Ma,{})}));

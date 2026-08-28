@@ -5,7 +5,7 @@ import { NewsTitle, NewsButton, GalleryNews } from "./News.styled";
 import { NewsApi } from "../../Api-document/NewsApi";
 
 const initialState = {
-  query: "Interacting with our pets",
+  query: "forecast",
   news: [],
   loading: false,
   page: 1,
@@ -66,7 +66,7 @@ export default function News() {
     <>
       <section>
         <div className="container">
-          <NewsTitle>Interacting with our pets</NewsTitle>
+          <NewsTitle>News forecast</NewsTitle>
           <GalleryNews>
             {state.news.map((item) => (
               <div key={item.url}>

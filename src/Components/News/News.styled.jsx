@@ -43,6 +43,7 @@ export const GalleryNews = styled.h3`
     height: 208px;
     border-radius: 10px;
     transition: all 0.3s ease;
+    object-fit: cover;
 
     &:hover {
       box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.4);

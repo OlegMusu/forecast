@@ -46,7 +46,6 @@ export const HeaderStyle = styled.header`
 `;
 
 export const HeaderContainer = styled.div`
-  font-family: "Montserrat Alternates", sans-serif;
   width: 1140px;
   display: flex;
   gap: 111px;

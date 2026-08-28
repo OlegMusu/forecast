@@ -9,7 +9,7 @@ import {
   UserRegistration,
   DeleteUser,
   OpenSignup,
-  ThemeToggleSlider, // Наш минималистичный слайдер
+  ThemeToggleSlider,
 } from "./Header.styled";
 
 export default function Header() {
@@ -22,12 +22,10 @@ export default function Header() {
   const [isLogin, setIsLogin] = useState(false);
   const [isFloating, setIsFloating] = useState(false);
 
-  // Стейт для темы (берём сохраненную или по умолчанию светлую)
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") || "light"
   );
 
-  // Следим за скроллом колесика
   useEffect(() => {
     let lastScrollY = window.scrollY;
 
@@ -52,7 +50,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Синхронизируем тему с тегом <html> и localStorage
   useEffect(() => {
     localStorage.setItem("theme", theme);
     if (theme === "dark") {
@@ -62,7 +59,6 @@ export default function Header() {
     }
   }, [theme]);
 
-  // Функция переключения темы
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
@@ -116,13 +112,11 @@ export default function Header() {
           </ul>
 
           <UserRegistration>
-            {/* Минималистичный тумблер-слайдер строго по картинке */}
             <ThemeToggleSlider 
               onClick={toggleTheme} 
               $theme={theme} 
               aria-label="Toggle theme"
             >
-              {/* Внутри только ползунок, меняющий положение и цвет */}
               <div className="toggle-thumb" />
             </ThemeToggleSlider>
 

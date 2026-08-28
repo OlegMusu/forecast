@@ -472,6 +472,7 @@ Error generating stack: `+e.message+`
   bottom: 20px;
   color: white;
 `,jr=W.h2`
+  color: white;
   margin: 0;
   font-size: 32px;
   font-weight: 500;

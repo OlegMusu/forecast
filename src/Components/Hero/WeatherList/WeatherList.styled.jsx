@@ -51,6 +51,7 @@ export const WeatherInfo = styled.div`
 `;
 
 export const WeatherCity = styled.h2`
+  color: white;
   margin: 0;
   font-size: 32px;
   font-weight: 500;

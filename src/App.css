@@ -1,12 +1,60 @@
+/* Базовые стили для СВЕТЛОЙ темы по умолчанию */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #1a1a1a;
+  --title-color: #000000;
+  --card-bg: #f8f9fa;
+}
+
+/* Автоматическое переключение на ТЕМНУЮ тему */
+html.dark-theme {
+  --bg-color: #121212;
+  --title-color: #ffffff;
+  --card-bg: #1e1e1e;
+}
+
+/* Обновленный body из вашего кода */
 body {
   width: 100%;
   margin: 0 auto;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  /* Плавный переход цвета при переключении тумблера */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Обновленный .container из вашего кода */
 .container {
   width: 100%;
   max-width: 1184px;
   margin: 0 auto;
   padding: 0 20px;
   box-sizing: border-box;
+}
+
+/* Универсальное правило для всех заголовков на сайте (включая "Weather map") */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--title-color);
+  transition: color 0.3s ease;
+}
+
+/* Глобальная анимация для всех картинок из прошлых шагов */
+@keyframes imgFadeIn {
+  from { opacity: 0; transform: scale(0.98); filter: blur(4px); }
+  to { opacity: 1; transform: scale(1); filter: blur(0px); }
+}
+
+img {
+  opacity: 0;
+  will-change: opacity, transform, filter;
+  animation: imgFadeIn 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.leaflet-container img {
+  animation: imgFadeInLeaflet 0.3s ease-out forwards;
+}
+
+@keyframes imgFadeInLeaflet {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

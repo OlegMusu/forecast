@@ -149,3 +149,49 @@ button {
   border: 0;
   padding: 0;
 }
+
+/* 1. Создаем анимацию плавного появления */
+@keyframes imgFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+    filter: blur(4px); /* Легкое красивое размытие при проявлении */
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0px);
+  }
+}
+
+/* 2. Применяем анимацию ко ВСЕМ картинкам на сайте */
+img {
+  opacity: 0; /* Изначально скрываем, чтобы не было резкого скачка до загрузки */
+  will-change: opacity, transform, filter; /* Подсказка браузеру для плавной работы видеокарты */
+  
+  /* Название анимации | Время (0.5 сек) | Плавность | Сохранить финальный результат */
+  animation: imgFadeIn 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* 3. Защита для карты Leaflet */
+/* Карты Leaflet собираются из десятков маленьких картинок-кусочков (тайлов). 
+   Чтобы при скролле карты они не масштабировались и не ломали сетку, 
+   для них мы оставляем только плавное появление (opacity) */
+.leaflet-container img {
+  animation: imgFadeInLeaflet 0.3s ease-out forwards;
+}
+
+@keyframes imgFadeInLeaflet {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@import url('https://googleapis.com');
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}

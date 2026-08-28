@@ -1,18 +1,23 @@
-const API_KEY = "42e7f5eb5e92e38d5b0259217b9039e7";
-const BASE_URL = "https://api.openweathermap.org/data/2.5";
+const KEY = "42e7f5eb5e92e38d5b0259217b9039e7";
+const API = "https://api.openweathermap.org/data/2.5";
+const GEO = "https://api.openweathermap.org/geo/1.0";
 
-export const WeatherApi = async (city) => {
-  const response = await fetch(
-    `${BASE_URL}/weather?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric&lang=ru`
-  );
+const get = async (url) => {
+  const res = await fetch(url);
+  const data = await res.json();
 
-  return response.json();
+  if (!res.ok) {
+    throw new Error(data.message || "API error");
+  }
+
+  return data;
 };
 
-export const ForecastApi = async (city) => {
-  const response = await fetch(
-    `${BASE_URL}/forecast?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric&lang=ru`
-  );
+export const SearchCitiesApi = (city) =>
+  get(`${GEO}/direct?q=${encodeURIComponent(city)}&limit=5&appid=${KEY}`);
 
-  return response.json();
-};
+export const WeatherByCoordinatesApi = (lat, lon) =>
+  get(`${API}/weather?lat=${lat}&lon=${lon}&appid=${KEY}&units=metric`);
+
+export const ForecastByCoordinatesApi = (lat, lon) =>
+  get(`${API}/forecast?lat=${lat}&lon=${lon}&appid=${KEY}&units=metric`);

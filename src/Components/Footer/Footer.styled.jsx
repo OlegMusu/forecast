@@ -36,16 +36,19 @@ export const FooterList = styled.ul`
 export const FooterItem = styled.li`
   width: 40px;
   height: 40px;
-  
-  img {
-    transition: transform 0.2s ease;
+  transition: transform 0.2s ease; 
 
-    &:hover {
-      transform: scale(1.15);
-    }
-    
-    &:active {
-      transform: scale(1);
-    }
+  img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  &:hover {
+    transform: scale(1.15);
+  }
+
+  &:active {
+    transform: scale(1);
   }
 `;

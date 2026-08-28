@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Modal from "../Modal/Modal";
 import ProfileModal from "../ProfileModal/ProfileModal";
 import userAvatar from "../../Images/header/user.png";
@@ -9,6 +9,7 @@ import {
   UserRegistration,
   DeleteUser,
   OpenSignup,
+  ThemeToggleSlider, // Наш минималистичный слайдер
 } from "./Header.styled";
 
 export default function Header() {
@@ -19,6 +20,52 @@ export default function Header() {
   const [modal, setModal] = useState(false);
   const [profileModal, setProfileModal] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
+  const [isFloating, setIsFloating] = useState(false);
+
+  // Стейт для темы (берём сохраненную или по умолчанию светлую)
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") || "light"
+  );
+
+  // Следим за скроллом колесика
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY > 80) {
+        setIsFloating(true);
+      } else {
+        setIsFloating(false);
+      }
+
+      const diff = currentScrollY - lastScrollY;
+      document.documentElement.style.setProperty("--scroll-diff", `${diff}px`);
+      
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Синхронизируем тему с тегом <html> и localStorage
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark-theme");
+    } else {
+      document.documentElement.classList.remove("dark-theme");
+    }
+  }, [theme]);
+
+  // Функция переключения темы
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  };
 
   const saveUser = (data) => {
     localStorage.setItem("user", JSON.stringify(data));
@@ -48,14 +95,9 @@ export default function Header() {
     setModal(true);
   };
 
-  const openLogin = () => {
-    setIsLogin(true);
-    setModal(true);
-  };
-
   return (
     <>
-      <HeaderStyle>
+      <HeaderStyle $isFloating={isFloating} $theme={theme}>
         <HeaderContainer>
           <a href="#">
             <img src={logo} alt="logo" />
@@ -65,17 +107,25 @@ export default function Header() {
             <li>
               <a href="#">Who we are</a>
             </li>
-
             <li>
               <a href="#">Contacts</a>
             </li>
-
             <li>
               <a href="#">Menu</a>
             </li>
           </ul>
 
           <UserRegistration>
+            {/* Минималистичный тумблер-слайдер строго по картинке */}
+            <ThemeToggleSlider 
+              onClick={toggleTheme} 
+              $theme={theme} 
+              aria-label="Toggle theme"
+            >
+              {/* Внутри только ползунок, меняющий положение и цвет */}
+              <div className="toggle-thumb" />
+            </ThemeToggleSlider>
+
             {user ? (
               <DeleteUser onClick={deleteUser}>
                 Leave
@@ -88,7 +138,7 @@ export default function Header() {
               </>
             )}
 
-            <button onClick={() => user && setProfileModal(true)}>
+            <button onClick={() => user && setProfileModal(true)} style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}>
               <img
                 src={user?.avatar || userAvatar}
                 alt="Profile"

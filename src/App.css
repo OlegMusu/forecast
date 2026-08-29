@@ -32,6 +32,22 @@ body {
   box-sizing: border-box;
 }
 
+/* Планшет */
+@media (max-width: 1024px) {
+  .container {
+    max-width: 634px;
+    padding: 0 20px;
+  }
+}
+
+/* Телефон */
+@media (max-width: 600px) {
+  .container {
+    max-width: 293px;
+    padding: 0 15px;
+  }
+}
+
 /* Универсальное правило для всех заголовков на сайте (включая "Weather map") */
 h1, h2, h3, h4, h5, h6 {
   color: var(--title-color);

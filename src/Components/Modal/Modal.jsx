@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import {
   Backdrop,
   ModalWindow,
@@ -11,6 +12,7 @@ export default function Modal({
   loginUser,
   isLogin,
   setIsLogin,
+  theme,
 }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -145,7 +147,8 @@ export default function Modal({
         name: "",
         email: "",
         password: "",
-        login: "Account not found. Please create an account first.",
+        login:
+          "Account not found. Please create an account first.",
       });
 
       return;
@@ -173,10 +176,15 @@ export default function Modal({
 
   return (
     <Backdrop onClick={handleBackdropClick}>
-      <ModalWindow>
-        <h2>{isLogin ? "Log in" : "Sign up"}</h2>
+      <ModalWindow $theme={theme}>
+        <h2>
+          {isLogin ? "Log in" : "Sign up"}
+        </h2>
 
-        <FormContainer onSubmit={handleSubmit}>
+        <FormContainer
+          onSubmit={handleSubmit}
+          $theme={theme}
+        >
           {!isLogin && (
             <>
               <label htmlFor="username">
@@ -190,6 +198,7 @@ export default function Modal({
                 value={name}
                 onChange={(e) => {
                   setName(e.target.value);
+
                   setErrors((prev) => ({
                     ...prev,
                     name: "",
@@ -216,6 +225,7 @@ export default function Modal({
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
+
               setErrors((prev) => ({
                 ...prev,
                 email: "",
@@ -242,6 +252,7 @@ export default function Modal({
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
+
               setErrors((prev) => ({
                 ...prev,
                 password: "",
@@ -270,14 +281,20 @@ export default function Modal({
             {isLogin ? (
               <>
                 Don't have an account?{" "}
-                <a href="#" onClick={switchToSignup}>
+                <a
+                  href="#"
+                  onClick={switchToSignup}
+                >
                   Create account
                 </a>
               </>
             ) : (
               <>
                 Already have an account?{" "}
-                <a href="#" onClick={switchToLogin}>
+                <a
+                  href="#"
+                  onClick={switchToLogin}
+                >
                   Log in
                 </a>
               </>

@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+
 import OpenEyes from "../../Images/header/open-eyes.svg";
 import CloseEyes from "../../Images/header/close-eyes.svg";
 import DeleteAccount from "../../Images/forecast/delete.svg";
+
 import {
   Backdrop,
   Modal,
@@ -14,7 +16,13 @@ import {
   InputWrapper,
 } from "./ProfileModal.styled";
 
-export default function ProfileModal({ user, close, saveUser, deleteAccount }) {
+export default function ProfileModal({
+  user,
+  close,
+  saveUser,
+  deleteAccount,
+  theme,
+}) {
   const [name, setName] = useState(user.name);
   const [password, setPassword] = useState(user.password);
   const [showPassword, setShowPassword] = useState(false);
@@ -22,12 +30,16 @@ export default function ProfileModal({ user, close, saveUser, deleteAccount }) {
 
   useEffect(() => {
     const escape = (e) => {
-      if (e.key === "Escape") close();
+      if (e.key === "Escape") {
+        close();
+      }
     };
 
     document.addEventListener("keydown", escape);
 
-    return () => document.removeEventListener("keydown", escape);
+    return () => {
+      document.removeEventListener("keydown", escape);
+    };
   }, [close]);
 
   const handleBackdropClick = (e) => {
@@ -54,55 +66,82 @@ export default function ProfileModal({ user, close, saveUser, deleteAccount }) {
   };
 
   const save = () => {
-  if (!name.trim()) {
-    setError("Please enter your name");
-    return;
-  }
+    if (!name.trim()) {
+      setError("Please enter your name");
+      return;
+    }
 
-  if (password.length < 6) {
-    setError("Password must contain at least 6 characters");
-    return;
-  }
+    if (password.length < 6) {
+      setError(
+        "Password must contain at least 6 characters"
+      );
 
-  saveUser({
-    ...user,
-    name: name.trim(),
-    password,
-  });
+      return;
+    }
 
-  close();
-};
+    saveUser({
+      ...user,
+      name: name.trim(),
+      password,
+    });
+
+    close();
+  };
 
   return (
     <Backdrop onClick={handleBackdropClick}>
-      <Modal>
-        <ModalTitle>Settings</ModalTitle>
+      <Modal $theme={theme}>
+        <ModalTitle $theme={theme}>
+          Settings
+        </ModalTitle>
 
-        <FormGroup>
-          Change the avatar
-          <input type="file" accept="image/*" onChange={changeAvatar} />
+        <FormGroup $theme={theme}>
+          <label>Change the avatar</label>
+
+          <input
+            type="file"
+            accept="image/*"
+            onChange={changeAvatar}
+          />
         </FormGroup>
 
-        <FormGroup>
+        <FormGroup $theme={theme}>
           <label>Username</label>
+
           <input
             type="text"
             placeholder="Name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => {
+              setName(e.target.value);
+              setError("");
+            }}
           />
         </FormGroup>
 
-        <FormGroup>
-          <label htmlFor="email">E-Mail</label>
-          <input type="text" value={user.email} disabled />
+        <FormGroup $theme={theme}>
+          <label htmlFor="email">
+            E-Mail
+          </label>
+
+          <input
+            id="email"
+            type="text"
+            value={user.email}
+            disabled
+          />
         </FormGroup>
 
-        <FormGroup>
+        <FormGroup $theme={theme}>
           <label>Password</label>
+
           <InputWrapper>
             <PasswordInput
-              type={showPassword ? "text" : "password"}
+              type={
+                showPassword
+                  ? "text"
+                  : "password"
+              }
               maxLength={13}
               placeholder="Password"
               value={password}
@@ -111,24 +150,43 @@ export default function ProfileModal({ user, close, saveUser, deleteAccount }) {
                 setError("");
               }}
             />
+
             <EyeButton
               type="button"
-              onClick={() => setShowPassword(!showPassword)}
+              onClick={() =>
+                setShowPassword(!showPassword)
+              }
             >
               <img
-                src={showPassword ? OpenEyes : CloseEyes}
+                src={
+                  showPassword
+                    ? OpenEyes
+                    : CloseEyes
+                }
                 alt="Toggle password"
               />
             </EyeButton>
           </InputWrapper>
         </FormGroup>
 
-        {error && <p className="error-text">{error}</p>}
+        {error && (
+          <p className="error-text">
+            {error}
+          </p>
+        )}
 
-        <SubmitButton onClick={save}>Save</SubmitButton>
+        <SubmitButton onClick={save}>
+          Save
+        </SubmitButton>
 
-        <DeleteButton onClick={deleteAccount} type="button">
-          <img src={DeleteAccount} alt="Delete account" />
+        <DeleteButton
+          onClick={deleteAccount}
+          type="button"
+        >
+          <img
+            src={DeleteAccount}
+            alt="Delete account"
+          />
         </DeleteButton>
       </Modal>
     </Backdrop>

@@ -220,12 +220,9 @@ export const UserRegistration = styled.div`
 
   .profile-button img {
     border-radius: 50%;
-
     width: 50px;
     height: 50px;
-
     object-fit: cover;
-
     display: block;
   }
 
@@ -427,35 +424,34 @@ export const MenuButton = styled.button`
 
 export const MobileMenu = styled.div`
   position: absolute;
-
   top: calc(100% + 10px);
-
   right: 15px;
 
   width: 220px;
-
   padding: 8px;
 
   display: flex;
-
   flex-direction: column;
-
   gap: 4px;
 
   border-radius: 15px;
 
   background: ${({ $theme }) =>
-    $theme === "dark"
-      ? "#2a2a2a"
-      : "#ffffff"};
+    $theme === "dark" ? "#2a2a2a" : "#ffffff"};
 
   box-shadow:
     0 10px 30px
     rgba(0, 0, 0, 0.2);
-
   z-index: 1100;
 
-  animation: mobileMenuOpen 0.2s ease;
+  img {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
 
   @keyframes mobileMenuOpen {
     from {
@@ -512,6 +508,8 @@ export const MobileMenu = styled.div`
           ? "#3a3a3a"
           : "#f2f2f2"};
     }
+
+    
   }
 
   @media (min-width: 601px) {

@@ -111,12 +111,21 @@ export const XLabels = styled.div`
     text-align: center;
   }
 
+  @media (max-width: 1024px) {
+    margin-top: 12px;
+    padding: 0 5px;
+
+    span {
+      font-size: 10px;
+    }
+  }
+
   @media (max-width: 600px) {
     margin-top: 12px;
     padding: 0 5px;
 
     span {
-      font-size: 8px;
+      font-size: 4px;
     }
   }
 `;

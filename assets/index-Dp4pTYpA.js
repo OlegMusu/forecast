@@ -2022,7 +2022,7 @@ Error generating stack: `+e.message+`
       font-size: 14px;
     }
   }
-`,pa=`17359e3946544e06bf0a76d07975bc88`,ma=`https://newsapi.org/v2/everything`,ha=async(e,t=1)=>{let n=new URLSearchParams({apiKey:pa,q:e,page:String(t),pageSize:`10`,language:`en`,sortBy:`publishedAt`}),r=await fetch(`${ma}?${n.toString()}`);if(!r.ok)throw Error(`Ошибка News API: ${r.status} ${r.statusText}`);let i=await r.json();if(i.status!==`ok`)throw Error(i.message||`News API вернул ошибку`);return i},ga={query:`weather forecast`,news:[],loading:!1,page:1};function _a(e,t){switch(t.type){case`SET_NEWS`:return{...e,news:t.payload};case`SET_LOADING`:return{...e,loading:t.payload};case`NEXT_PAGE`:return{...e,page:e.page+1};default:return e}}function va(){let[e,t]=(0,v.useReducer)(_a,ga);return(0,v.useEffect)(()=>{let n=!0;async function r(){try{t({type:`SET_LOADING`,payload:!0});let r=await ha(e.query,e.page);if(!n)return;let i=(Array.isArray(r.articles)?r.articles:[]).filter(e=>e&&e.title).slice(0,4);t({type:`SET_NEWS`,payload:e.page===1?i:[...e.news,...i]})}catch(r){console.error(`Ошибка загрузки новостей:`,r),n&&e.page===1&&t({type:`SET_NEWS`,payload:[]})}finally{n&&t({type:`SET_LOADING`,payload:!1})}}return r(),()=>{n=!1}},[e.query,e.page]),(0,G.jsx)(`section`,{children:(0,G.jsxs)(`div`,{className:`container`,children:[(0,G.jsx)(ua,{children:`Weather News`}),(0,G.jsx)(fa,{children:e.news.map((e,t)=>(0,G.jsxs)(`div`,{children:[(0,G.jsx)(`img`,{src:e.urlToImage||`/forecast/assets/no-pictures--eZbyHnr.png`,alt:e.title||`Weather news`,onError:e=>{e.currentTarget.src=la}}),(0,G.jsx)(`h3`,{children:e.title}),(0,G.jsx)(`p`,{children:e.description||`No description available.`})]},`${e.url||e.title}-${t}`))}),e.loading&&(0,G.jsx)(`p`,{children:`Loading...`}),e.news.length>0&&!e.loading&&(0,G.jsx)(da,{type:`button`,onClick:()=>{e.loading||t({type:`NEXT_PAGE`})},children:`See more`})]})})}var ya=W.section`
+`,pa=[{url:`test-news-1`,title:`Weather forecast for today`,description:`Today will be mostly sunny with comfortable temperatures. The weather is expected to remain stable throughout the day.`,urlToImage:`https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?auto=format&fit=crop&w=900&q=80`},{url:`test-news-2`,title:`Beautiful sunny weather`,description:`Sunny weather is expected in many regions today. It is a perfect day for walking, travelling and spending time outdoors.`,urlToImage:`https://images.unsplash.com/photo-1601297183305-6df142704ea2?auto=format&fit=crop&w=900&q=80`},{url:`test-news-3`,title:`Rainy weather forecast`,description:`Some areas may experience rain during the day. Take an umbrella with you if you are planning to spend time outside.`,urlToImage:`https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?auto=format&fit=crop&w=900&q=80`},{url:`test-news-4`,title:`Weekend weather`,description:`The weekend forecast looks promising. Temperatures will remain pleasant and there will be several sunny periods.`,urlToImage:`https://images.unsplash.com/photo-1499346030926-9a72daac6c63?auto=format&fit=crop&w=900&q=80`},{url:`test-news-5`,title:`Weather changes`,description:`Meteorologists are watching a change in weather conditions. Temperatures may become slightly cooler over the next few days.`,urlToImage:`https://images.unsplash.com/photo-1534088568595-a066f410bcda?auto=format&fit=crop&w=900&q=80`},{url:`test-news-6`,title:`Clear skies expected`,description:`Clear skies are expected in the morning with light clouds appearing later in the afternoon.`,urlToImage:`https://images.unsplash.com/photo-1536244636800-a3f74db0f3e3?auto=format&fit=crop&w=900&q=80`},{url:`test-news-7`,title:`Morning weather update`,description:`The morning will start with mild temperatures and light wind. Conditions should improve as the day continues.`,urlToImage:`https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=80`},{url:`test-news-8`,title:`Warm day ahead`,description:`A warm day is expected with plenty of sunshine. Temperatures will be higher than they were yesterday.`,urlToImage:`https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80`},{url:`test-news-9`,title:`Cloudy afternoon`,description:`Clouds will gradually increase during the afternoon, but significant rainfall is not expected.`,urlToImage:`https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?auto=format&fit=crop&w=900&q=80`},{url:`test-news-10`,title:`New weather report`,description:`A new weather report provides updated information about temperatures, wind and expected conditions.`,urlToImage:`https://images.unsplash.com/photo-1491002052546-bf38f186af56?auto=format&fit=crop&w=900&q=80`}],ma=async(e,t=1)=>{await new Promise(e=>setTimeout(e,500));let n=(t-1)*4,r=n+4,i=pa.slice(n,r);return{status:`ok`,totalResults:pa.length,articles:i}},ha={query:`forecast`,news:[],loading:!1,page:1};function ga(e,t){switch(t.type){case`SET_NEWS`:return{...e,news:t.payload};case`SET_LOADING`:return{...e,loading:t.payload};case`NEXT_PAGE`:return{...e,page:e.page+1};default:return e}}function _a(){let[e,t]=(0,v.useReducer)(ga,ha);return(0,v.useEffect)(()=>{let n=!0;async function r(){try{t({type:`SET_LOADING`,payload:!0});let r=await ma(e.query,e.page);if(!n)return;let i=r.articles.filter(e=>e.title).slice(0,4);t({type:`SET_NEWS`,payload:e.page===1?i:[...e.news,...i]})}catch(e){console.error(`Ошибка загрузки новостей:`,e)}finally{n&&t({type:`SET_LOADING`,payload:!1})}}return r(),()=>{n=!1}},[e.query,e.page]),(0,G.jsx)(`section`,{children:(0,G.jsxs)(`div`,{className:`container`,children:[(0,G.jsx)(ua,{children:`Weather News`}),(0,G.jsx)(fa,{children:e.news.map((e,t)=>(0,G.jsxs)(`div`,{children:[(0,G.jsx)(`img`,{src:e.urlToImage||`/forecast/assets/no-pictures--eZbyHnr.png`,alt:e.title||`Weather news`,onError:e=>{e.currentTarget.src=la}}),(0,G.jsx)(`p`,{children:e.description||`No description available.`})]},`${e.url}-${t}`))}),e.news.length>0&&!e.loading&&(0,G.jsx)(da,{type:`button`,onClick:()=>{e.loading||t({type:`NEXT_PAGE`})},children:`See more`}),e.loading&&(0,G.jsx)(`p`,{children:`Loading...`})]})})}var va=W.section`
   padding-top: 40px;
   overflow: hidden;
   margin-bottom: 48px;
@@ -2031,7 +2031,7 @@ Error generating stack: `+e.message+`
     padding-top: 30px;
     margin-bottom: 30px;
   }
-`,ba=W.h3`
+`,ya=W.h3`
   font-size: 20px;
   margin: 0 0 40px;
 
@@ -2039,7 +2039,7 @@ Error generating stack: `+e.message+`
     font-size: 18px;
     margin-bottom: 25px;
   }
-`,xa=W.div`
+`,ba=W.div`
   margin: 0 auto;
   height: 210px;
   display: flex;
@@ -2055,7 +2055,7 @@ Error generating stack: `+e.message+`
   @media (max-width: 600px) {
     height: 170px;
   }
-`,Sa=W.div`
+`,xa=W.div`
   position: absolute;
   overflow: hidden;
   cursor: pointer;
@@ -2146,7 +2146,7 @@ Error generating stack: `+e.message+`
         margin-left: 0;
       `}
   }
-`,Ca=W.img`
+`,Sa=W.img`
   width: 384px;
   height: 211px;
   display: block;
@@ -2156,7 +2156,7 @@ Error generating stack: `+e.message+`
     width: 320px;
     height: 175px;
   }
-`;function wa(){let[e,t]=(0,v.useState)([]),[n,r]=(0,v.useState)(0);(0,v.useEffect)(()=>{(async()=>{try{let e=await wr(`nature`,1);t(e.hits)}catch(e){console.error(`Ошибка загрузки изображений:`,e)}})()},[]);let i=t=>{if(!e.length)return null;let r=t-n;return r>e.length/2&&(r-=e.length),r<-e.length/2&&(r+=e.length),r};return(0,G.jsx)(ya,{children:(0,G.jsxs)(`div`,{className:`container`,children:[(0,G.jsx)(ba,{children:`Beautiful nature`}),(0,G.jsx)(xa,{children:e.map((e,t)=>{let n=i(t);return n<-2||n>2?null:(0,G.jsx)(Sa,{$position:n,onClick:()=>r(t),children:(0,G.jsx)(Ca,{src:e.largeImageURL,alt:e.tags})},e.id)})})]})})}var Ta=`/forecast/assets/facebook-C2vNpnz4.svg`,Ea=`/forecast/assets/instagram-yzQ5sAPb.svg`,Da=`/forecast/assets/whatsapp-CvACpcmq.svg`,Oa=W.footer`
+`;function Ca(){let[e,t]=(0,v.useState)([]),[n,r]=(0,v.useState)(0);(0,v.useEffect)(()=>{(async()=>{try{let e=await wr(`nature`,1);t(e.hits)}catch(e){console.error(`Ошибка загрузки изображений:`,e)}})()},[]);let i=t=>{if(!e.length)return null;let r=t-n;return r>e.length/2&&(r-=e.length),r<-e.length/2&&(r+=e.length),r};return(0,G.jsx)(va,{children:(0,G.jsxs)(`div`,{className:`container`,children:[(0,G.jsx)(ya,{children:`Beautiful nature`}),(0,G.jsx)(ba,{children:e.map((e,t)=>{let n=i(t);return n<-2||n>2?null:(0,G.jsx)(xa,{$position:n,onClick:()=>r(t),children:(0,G.jsx)(Sa,{src:e.largeImageURL,alt:e.tags})},e.id)})})]})})}var wa=`/forecast/assets/facebook-C2vNpnz4.svg`,Ta=`/forecast/assets/instagram-yzQ5sAPb.svg`,Ea=`/forecast/assets/whatsapp-CvACpcmq.svg`,Da=W.footer`
   background-color: #ffb36c;
   display: flex;
   justify-content: center;
@@ -2173,7 +2173,7 @@ Error generating stack: `+e.message+`
     min-height: auto;
     padding: 30px 15px;
   }
-`,ka=W.div`
+`,Oa=W.div`
   width: 100%;
   max-width: 1160px;
   display: flex;
@@ -2191,7 +2191,7 @@ Error generating stack: `+e.message+`
     gap: 25px;
     text-align: center;
   }
-`,Aa=W.p`
+`,ka=W.p`
   font-weight: 500;
   font-size: 16px;
   margin: 0 0 10px;
@@ -2199,14 +2199,14 @@ Error generating stack: `+e.message+`
   @media (max-width: 600px) {
     font-size: 15px;
   }
-`,ja=W.span`
+`,Aa=W.span`
   font-weight: 500;
   font-size: 12px;
 
   @media (max-width: 600px) {
     font-size: 11px;
   }
-`,Ma=W.ul`
+`,ja=W.ul`
   display: flex;
   gap: 20px;
   padding: 0;
@@ -2216,7 +2216,7 @@ Error generating stack: `+e.message+`
   @media (max-width: 600px) {
     gap: 15px;
   }
-`,Na=W.li`
+`,Ma=W.li`
   width: 40px;
   height: 40px;
   transition: transform 0.2s ease;
@@ -2234,4 +2234,4 @@ Error generating stack: `+e.message+`
   &:active {
     transform: scale(1);
   }
-`;function Pa(){return(0,G.jsx)(G.Fragment,{children:(0,G.jsx)(Oa,{children:(0,G.jsxs)(ka,{className:`container`,children:[(0,G.jsx)(`a`,{href:`#`,children:(0,G.jsx)(`img`,{src:nr,alt:`logo`})}),(0,G.jsxs)(`div`,{children:[(0,G.jsx)(Aa,{children:`Address`}),(0,G.jsxs)(`ul`,{children:[(0,G.jsx)(`li`,{children:(0,G.jsx)(ja,{children:`Svobody str. 35`})}),(0,G.jsx)(`li`,{children:(0,G.jsx)(ja,{children:`Kyiv`})}),(0,G.jsx)(`li`,{children:(0,G.jsx)(ja,{children:`Ukraine`})})]})]}),(0,G.jsxs)(`div`,{children:[(0,G.jsx)(Aa,{children:`Contact us`}),(0,G.jsxs)(Ma,{children:[(0,G.jsx)(Na,{children:(0,G.jsx)(`a`,{href:``,children:(0,G.jsx)(`img`,{src:Ea,alt:``})})}),(0,G.jsx)(Na,{children:(0,G.jsx)(`a`,{href:``,children:(0,G.jsx)(`img`,{src:Ta,alt:``})})}),(0,G.jsx)(Na,{children:(0,G.jsx)(`a`,{href:``,children:(0,G.jsx)(`img`,{src:Da,alt:``})})})]})]})]})})})}function Fa(){return(0,G.jsxs)(G.Fragment,{children:[(0,G.jsx)(fr,{}),(0,G.jsx)(ca,{}),(0,G.jsx)(va,{}),(0,G.jsx)(wa,{}),(0,G.jsx)(Pa,{})]})}(0,y.createRoot)(document.getElementById(`root`)).render((0,G.jsx)(v.StrictMode,{children:(0,G.jsx)(Fa,{})}));
+`;function Na(){return(0,G.jsx)(G.Fragment,{children:(0,G.jsx)(Da,{children:(0,G.jsxs)(Oa,{className:`container`,children:[(0,G.jsx)(`a`,{href:`#`,children:(0,G.jsx)(`img`,{src:nr,alt:`logo`})}),(0,G.jsxs)(`div`,{children:[(0,G.jsx)(ka,{children:`Address`}),(0,G.jsxs)(`ul`,{children:[(0,G.jsx)(`li`,{children:(0,G.jsx)(Aa,{children:`Svobody str. 35`})}),(0,G.jsx)(`li`,{children:(0,G.jsx)(Aa,{children:`Kyiv`})}),(0,G.jsx)(`li`,{children:(0,G.jsx)(Aa,{children:`Ukraine`})})]})]}),(0,G.jsxs)(`div`,{children:[(0,G.jsx)(ka,{children:`Contact us`}),(0,G.jsxs)(ja,{children:[(0,G.jsx)(Ma,{children:(0,G.jsx)(`a`,{href:``,children:(0,G.jsx)(`img`,{src:Ta,alt:``})})}),(0,G.jsx)(Ma,{children:(0,G.jsx)(`a`,{href:``,children:(0,G.jsx)(`img`,{src:wa,alt:``})})}),(0,G.jsx)(Ma,{children:(0,G.jsx)(`a`,{href:``,children:(0,G.jsx)(`img`,{src:Ea,alt:``})})})]})]})]})})})}function Pa(){return(0,G.jsxs)(G.Fragment,{children:[(0,G.jsx)(fr,{}),(0,G.jsx)(ca,{}),(0,G.jsx)(_a,{}),(0,G.jsx)(Ca,{}),(0,G.jsx)(Na,{})]})}(0,y.createRoot)(document.getElementById(`root`)).render((0,G.jsx)(v.StrictMode,{children:(0,G.jsx)(Pa,{})}));

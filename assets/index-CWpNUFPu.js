@@ -715,12 +715,9 @@ Error generating stack: `+e.message+`
 
   .profile-button img {
     border-radius: 50%;
-
     width: 50px;
     height: 50px;
-
     object-fit: cover;
-
     display: block;
   }
 
@@ -896,19 +893,14 @@ Error generating stack: `+e.message+`
   }
 `,lr=W.div`
   position: absolute;
-
   top: calc(100% + 10px);
-
   right: 15px;
 
   width: 220px;
-
   padding: 8px;
 
   display: flex;
-
   flex-direction: column;
-
   gap: 4px;
 
   border-radius: 15px;
@@ -918,10 +910,16 @@ Error generating stack: `+e.message+`
   box-shadow:
     0 10px 30px
     rgba(0, 0, 0, 0.2);
-
   z-index: 1100;
 
-  animation: mobileMenuOpen 0.2s ease;
+  img {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
 
   @keyframes mobileMenuOpen {
     from {
@@ -972,6 +970,8 @@ Error generating stack: `+e.message+`
     &:hover {
       background: ${({$theme:e})=>e===`dark`?`#3a3a3a`:`#f2f2f2`};
     }
+
+    
   }
 
   @media (min-width: 601px) {
@@ -1372,12 +1372,21 @@ Error generating stack: `+e.message+`
     text-align: center;
   }
 
+  @media (max-width: 1024px) {
+    margin-top: 12px;
+    padding: 0 5px;
+
+    span {
+      font-size: 10px;
+    }
+  }
+
   @media (max-width: 600px) {
     margin-top: 12px;
     padding: 0 5px;
 
     span {
-      font-size: 8px;
+      font-size: 4px;
     }
   }
 `,Fi=W.div`
